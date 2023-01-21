@@ -7,6 +7,7 @@ const PostsWidget = ({userId , isProfile = false}) => {
 
   const dispatch = useDispatch();
   const posts = useSelector((state)=>state.posts)
+  const  reversePost = [...posts].reverse();
   const token = useSelector((state)=>state.token)
 
   const getPosts = async () => {
@@ -39,7 +40,7 @@ const PostsWidget = ({userId , isProfile = false}) => {
 
   return (
     <>
-      {posts.map(({_id,userId,firstName,lastName,description,location,picturePath,userPicturePath,likes,comments})=>(
+      {reversePost.map(({_id,userId,firstName,lastName,description,location,picturePath,userPicturePath,likes,comments})=>(
         <PostWidget
         key={_id}
         postId={_id}
