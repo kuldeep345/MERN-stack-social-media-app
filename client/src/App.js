@@ -1,4 +1,4 @@
-import { BrowserRouter , Naviagte , Routes , Route } from "react-router-dom";
+import { BrowserRouter , Naviagte , Routes , Route, Navigate } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
@@ -12,6 +12,7 @@ function App() {
 
     const mode = useSelector(state => state.mode)
     const theme = useMemo(()=>createTheme(themeSettings(mode)) , [mode])
+    const isAuth = Boolean(useSelector(state => state.token))
 
   return (
       <BrowserRouter>
@@ -20,8 +21,8 @@ function App() {
          <Routes>
             <Route path="/">
               <Route index element={<LoginPage/>}/>
-              <Route path="home" element={<HomePage/>}/>
-              <Route path="profile/:userId" element={<ProfilePage/>}/>
+              <Route path="home" element={isAuth ? <HomePage/> : <Navigate to="/" />}/>
+              <Route path="profile/:userId" element={isAuth ? <ProfilePage/> : <Navigate to="/" />}/>
             </Route>
          </Routes>
          </ThemeProvider>
