@@ -6,7 +6,7 @@ import FlexBetween from './FlexBetween'
 import { useNavigate } from 'react-router-dom'
 import UserImage from './UserImage'
 
-const Friend = ({ friendId , name , subtitle , userPicturePath }) => {
+const Friend = ({ friendId, name, subtitle, picturePath}) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Friend = ({ friendId , name , subtitle , userPicturePath }) => {
   return (
     <FlexBetween>
         <FlexBetween gap="1rem">
-            <UserImage image={userPicturePath} size="55px"/>
+            <UserImage image={picturePath} size="55px"/>
             <Box 
                 onClick={()=>{
                     navigate(`/profile/${friendId}`)
